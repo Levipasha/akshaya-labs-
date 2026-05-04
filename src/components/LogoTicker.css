@@ -1,0 +1,120 @@
+.logo-ticker-section {
+  padding: 60px 0;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.ticker-viewport {
+  width: 100%;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.no-scroll .ticker-viewport {
+  mask-image: none;
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+.ticker-static {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+}
+
+.ticker-item {
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ticker-logo-box {
+  width: 180px;
+  height: 80px;
+  background: #f8fafc;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.ticker-icon {
+  font-size: 2.5rem;
+  transition: all 0.4s ease;
+}
+
+.ticker-partner-logo {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+  transition: all 0.4s ease;
+}
+
+.ticker-name-below {
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #475569;
+  margin-top: 12px;
+  transition: color 0.3s ease;
+}
+
+.ticker-item:hover .ticker-name-below {
+  color: #0ea5e9;
+}
+
+.ticker-logo-box:hover {
+  transform: translateY(-5px);
+  border-color: #0ea5e9;
+  background: #ffffff;
+}
+
+.ticker-logo-box:hover .ticker-icon,
+.ticker-logo-box:hover .ticker-partner-logo {
+  transform: scale(0.9);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .ticker-item {
+    padding: 0 20px;
+  }
+  .ticker-logo-box {
+    width: 140px;
+    height: 60px;
+  }
+}
