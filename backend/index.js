@@ -19,6 +19,7 @@ const categoryRoutes = require('./routes/categoryRoutes');
 const partnerRoutes = require('./routes/partnerRoutes');
 const bentoRoutes = require('./routes/bentoRoutes');
 const infoSectionRoutes = require('./routes/infoSectionRoutes');
+const aboutRoutes = require('./routes/aboutRoutes');
 
 app.use('/api/hero', heroRoutes);
 app.use('/api/products', productRoutes);
@@ -29,6 +30,7 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/partners', partnerRoutes);
 app.use('/api/bento', bentoRoutes);
 app.use('/api/info-section', infoSectionRoutes);
+app.use('/api/about', aboutRoutes);
 
 app.get('/api/test-cloudinary', async (req, res) => {
   const { cloudinary } = require('./config/cloudinary');
