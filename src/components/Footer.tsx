@@ -102,15 +102,6 @@ export const Footer: React.FC<FooterProps> = ({
             <p className="footer-description">
               {description}
             </p>
-            <ul className="social-links">
-              {socialLinks.map((social, idx) => (
-                <li key={idx}>
-                  <a href={social.href} aria-label={social.label}>
-                    {social.icon}
-                  </a>
-                </li>
-              ))}
-            </ul>
           </div>
           <div className="footer-links">
             {sections.map((section, sectionIdx) => (

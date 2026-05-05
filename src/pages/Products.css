@@ -519,7 +519,7 @@
 
 .spec-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   color: #64748b;
   font-size: 0.95rem;
@@ -527,6 +527,8 @@
 
 .spec-item strong {
   color: #1e293b;
+  min-width: 110px;
+  flex-shrink: 0;
 }
 
 .modal-actions {
