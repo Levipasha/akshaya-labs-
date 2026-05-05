@@ -8,6 +8,7 @@ function HeroManager() {
   const [formData, setFormData] = useState({ text1: '', text2: '', text3: '', subtext: '' });
   const [imageFile, setImageFile] = useState(null);
   const [editingId, setEditingId] = useState(null);
+  const [loading, setLoading] = useState(false);
   
   // Cropper State
   const [tempImage, setTempImage] = useState(null);

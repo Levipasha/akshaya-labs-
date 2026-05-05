@@ -10,6 +10,7 @@ import CategoryManager from './pages/CategoryManager';
 import PartnersManager from './pages/PartnersManager';
 import BentoManager from './pages/BentoManager';
 import InfoSectionManager from './pages/InfoSectionManager';
+import AboutManager from './pages/AboutManager';
 import Login from './pages/Login';
 
 function App() {
@@ -63,6 +64,9 @@ function App() {
             <NavLink to="/info-section" className="nav-link">
               <LayoutDashboard size={20} /> Info Section
             </NavLink>
+            <NavLink to="/about" className="nav-link">
+              <LayoutDashboard size={20} /> About Section
+            </NavLink>
             <NavLink to="/testimonials" className="nav-link">
               <Quote size={20} /> Testimonials
             </NavLink>
@@ -84,6 +88,7 @@ function App() {
             <Route path="/partners" element={<PartnersManager />} />
             <Route path="/founder" element={<FounderManager />} />
             <Route path="/info-section" element={<InfoSectionManager />} />
+            <Route path="/about" element={<AboutManager />} />
             <Route path="/testimonials" element={<TestimonialsManager />} />
             <Route path="/messages" element={<MessagesManager />} />
             <Route path="/" element={
