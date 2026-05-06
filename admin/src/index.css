@@ -769,3 +769,28 @@ nav {
   }
 }
 
+.dynamic-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  align-items: flex-start;
+}
+
+@media (max-width: 768px) {
+  .dynamic-row {
+    flex-direction: column;
+    background: #f8fafc;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    gap: 12px;
+  }
+  .dynamic-row .form-input {
+    width: 100% !important;
+  }
+  .dynamic-row .btn-danger {
+    width: 100%;
+    margin-top: 4px;
+    justify-content: center;
+  }
+}

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import api from '../api';
+import { Save, AlertCircle, CheckCircle2 } from 'lucide-react';
 
 const BentoManager = () => {
   const [bento, setBento] = useState({
     aboutText: '',
-    aboutBtnText: '',
-    aboutBtnLink: '',
     stat1Value: '',
     stat1Label: '',
     stat2Value: '',
@@ -16,6 +15,7 @@ const BentoManager = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     fetchBento();
@@ -28,6 +28,7 @@ const BentoManager = () => {
     } catch (error) {
       console.error('Error fetching bento data:', error);
       setMessage('Error loading data');
+      setError(true);
     } finally {
       setLoading(false);
     }
@@ -41,6 +42,7 @@ const BentoManager = () => {
     e.preventDefault();
     setSaving(true);
     setMessage('');
+    setError(false);
     try {
       await api.put('/bento', bento);
       setMessage('Bento Grid updated successfully!');
@@ -48,119 +50,107 @@ const BentoManager = () => {
     } catch (error) {
       console.error('Error updating bento data:', error);
       setMessage('Error updating data');
+      setError(true);
     } finally {
       setSaving(false);
     }
   };
 
-  if (loading) return <div className="p-6">Loading...</div>;
+  if (loading) return (
+    <div className="card">
+      <div style={{ textAlign: 'center', padding: '2rem' }}>Loading data...</div>
+    </div>
+  );
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold mb-6">Manage Bento Grid</h1>
+    <div className="animate-fade">
+      <div className="section-header">
+        <h1 className="section-title">Manage Bento Grid</h1>
+        <p className="section-subtitle">Edit the content displayed in the Bento Grid section on the home page.</p>
+      </div>
       
       {message && (
-        <div className={`p-4 rounded-lg mb-6 ${message.includes('Error') ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}>
-          {message}
+        <div className={`alert ${error ? 'error' : 'success'}`} style={{ marginBottom: '1.5rem', padding: '1rem', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: error ? '#fee2e2' : '#dcfce7', color: error ? '#b91c1c' : '#15803d' }}>
+          {error ? <AlertCircle size={20} /> : <CheckCircle2 size={20} />}
+          <span>{message}</span>
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-8 bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-        
-        {/* About Section */}
-        <div className="border-b pb-6">
-          <h2 className="text-xl font-semibold mb-4 text-blue-800">1. About Section (Left Column)</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="col-span-1 md:col-span-2">
-              <label className="block text-sm font-medium mb-1">About Text</label>
-              <textarea 
-                name="aboutText" value={bento.aboutText} onChange={handleChange}
-                rows="4" className="w-full border rounded p-2" required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Button Text</label>
-              <input 
-                type="text" name="aboutBtnText" value={bento.aboutBtnText} onChange={handleChange}
-                className="w-full border rounded p-2" required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Button Link</label>
-              <input 
-                type="text" name="aboutBtnLink" value={bento.aboutBtnLink} onChange={handleChange}
-                className="w-full border rounded p-2" required
-              />
-            </div>
+      <div className="card">
+        <h3 className="form-title">Edit Bento Grid Content</h3>
+        <form onSubmit={handleSubmit} className="grid-form">
+          
+          {/* About Section */}
+          <div className="form-group full">
+            <h4 style={{ fontSize: '1.1rem', fontWeight: 600, color: '#1e293b', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.5rem', marginTop: '1rem', marginBottom: '0.5rem' }}>
+              1. About Section (Left Column)
+            </h4>
           </div>
-        </div>
-
-        {/* Stats Section */}
-        <div className="border-b pb-6">
-          <h2 className="text-xl font-semibold mb-4 text-blue-800">2. Statistics (Top Middle)</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium mb-1">Stat 1 Value (e.g., 200+)</label>
-              <input 
-                type="text" name="stat1Value" value={bento.stat1Value} onChange={handleChange}
-                className="w-full border rounded p-2" required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Stat 1 Label (e.g., Projects Delivered)</label>
-              <input 
-                type="text" name="stat1Label" value={bento.stat1Label} onChange={handleChange}
-                className="w-full border rounded p-2" required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Stat 2 Value (e.g., 15+)</label>
-              <input 
-                type="text" name="stat2Value" value={bento.stat2Value} onChange={handleChange}
-                className="w-full border rounded p-2" required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Stat 2 Label (e.g., Years Experience)</label>
-              <input 
-                type="text" name="stat2Label" value={bento.stat2Label} onChange={handleChange}
-                className="w-full border rounded p-2" required
-              />
-            </div>
+          <div className="form-group full">
+            <label>About Text</label>
+            <textarea 
+              name="aboutText" value={bento.aboutText} onChange={handleChange}
+              rows="4" required
+            />
           </div>
-        </div>
 
-
-        {/* Catalog Section */}
-        <div className="border-b pb-6">
-          <h2 className="text-xl font-semibold mb-4 text-blue-800">3. Catalog Box (Bottom Middle)</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium mb-1">Title</label>
-              <input 
-                type="text" name="catalogTitle" value={bento.catalogTitle} onChange={handleChange}
-                className="w-full border rounded p-2" required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Subtitle</label>
-              <input 
-                type="text" name="catalogSubtitle" value={bento.catalogSubtitle} onChange={handleChange}
-                className="w-full border rounded p-2" required
-              />
-            </div>
+          {/* Stats Section */}
+          <div className="form-group full">
+            <h4 style={{ fontSize: '1.1rem', fontWeight: 600, color: '#1e293b', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.5rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
+              2. Statistics (Top Middle)
+            </h4>
           </div>
-        </div>
+          <div className="form-group">
+            <label>Stat 1 Value (e.g., 200+)</label>
+            <input 
+              type="text" name="stat1Value" value={bento.stat1Value} onChange={handleChange} required
+            />
+          </div>
+          <div className="form-group">
+            <label>Stat 1 Label (e.g., Projects Delivered)</label>
+            <input 
+              type="text" name="stat1Label" value={bento.stat1Label} onChange={handleChange} required
+            />
+          </div>
+          <div className="form-group">
+            <label>Stat 2 Value (e.g., 15+)</label>
+            <input 
+              type="text" name="stat2Value" value={bento.stat2Value} onChange={handleChange} required
+            />
+          </div>
+          <div className="form-group">
+            <label>Stat 2 Label (e.g., Years Experience)</label>
+            <input 
+              type="text" name="stat2Label" value={bento.stat2Label} onChange={handleChange} required
+            />
+          </div>
 
+          {/* Catalog Section */}
+          <div className="form-group full">
+            <h4 style={{ fontSize: '1.1rem', fontWeight: 600, color: '#1e293b', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.5rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
+              3. Catalog Box (Bottom Middle)
+            </h4>
+          </div>
+          <div className="form-group">
+            <label>Title</label>
+            <input 
+              type="text" name="catalogTitle" value={bento.catalogTitle} onChange={handleChange} required
+            />
+          </div>
+          <div className="form-group">
+            <label>Subtitle</label>
+            <input 
+              type="text" name="catalogSubtitle" value={bento.catalogSubtitle} onChange={handleChange} required
+            />
+          </div>
 
-        <button 
-          type="submit" 
-          disabled={saving}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition disabled:bg-blue-400"
-        >
-          {saving ? 'Saving...' : 'Save Bento Grid Content'}
-        </button>
-      </form>
+          <div className="form-actions full" style={{ marginTop: '2rem' }}>
+            <button type="submit" className="btn btn-primary" disabled={saving}>
+              <Save size={18} /> {saving ? 'Saving...' : 'Save Bento Grid Content'}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

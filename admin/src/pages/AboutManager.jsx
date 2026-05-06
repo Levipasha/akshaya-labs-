@@ -174,7 +174,7 @@ const AboutManager = () => {
       <div className="form-group">
         <label className="form-label">Story Paragraphs</label>
         {data.story.paragraphs.map((p, index) => (
-          <div key={index} style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}>
+          <div key={index} className="dynamic-row">
             <textarea value={p} onChange={(e) => handleStoryParagraphChange(index, e.target.value)} className="form-input" rows="3" />
             <button onClick={() => removeStoryParagraph(index)} className="btn btn-danger" style={{ padding: '0.5rem' }}><Trash2 size={16} /></button>
           </div>
@@ -200,7 +200,7 @@ const AboutManager = () => {
       {/* Stats Section */}
       <h3 style={{ marginTop: '2rem', marginBottom: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>Stats</h3>
       {data.stats.map((stat, index) => (
-        <div key={index} style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem', alignItems: 'flex-start' }}>
+        <div key={index} className="dynamic-row">
           <input type="text" placeholder="Label" value={stat.label} onChange={(e) => handleStatChange(index, 'label', e.target.value)} className="form-input" />
           <input type="text" placeholder="Value" value={stat.value} onChange={(e) => handleStatChange(index, 'value', e.target.value)} className="form-input" />
           <select value={stat.icon} onChange={(e) => handleStatChange(index, 'icon', e.target.value)} className="form-input" style={{ width: '150px' }}>
@@ -219,7 +219,7 @@ const AboutManager = () => {
       {/* Factsheet Section */}
       <h3 style={{ marginTop: '2rem', marginBottom: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>Factsheet</h3>
       {data.facts.map((fact, index) => (
-        <div key={index} style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}>
+        <div key={index} className="dynamic-row">
           <input type="text" placeholder="Label" value={fact.label} onChange={(e) => handleFactChange(index, 'label', e.target.value)} className="form-input" />
           <input type="text" placeholder="Value" value={fact.value} onChange={(e) => handleFactChange(index, 'value', e.target.value)} className="form-input" />
           <button onClick={() => removeFact(index)} className="btn btn-danger" style={{ padding: '0.5rem' }}><Trash2 size={16} /></button>
@@ -246,7 +246,7 @@ const AboutManager = () => {
       {/* Why Us Section */}
       <h3 style={{ marginTop: '2rem', marginBottom: '1rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem' }}>Why Us List</h3>
       {data.whyUs.map((item, index) => (
-        <div key={index} style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}>
+        <div key={index} className="dynamic-row">
           <input type="text" value={item} onChange={(e) => handleWhyUsChange(index, e.target.value)} className="form-input" />
           <button onClick={() => removeWhyUs(index)} className="btn btn-danger" style={{ padding: '0.5rem' }}><Trash2 size={16} /></button>
         </div>

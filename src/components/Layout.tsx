@@ -34,6 +34,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     };
   }, [lastScrollY]);
 
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const navLinks = [

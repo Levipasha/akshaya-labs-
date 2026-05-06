@@ -218,5 +218,13 @@
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  
+}
+
+@media (max-width: 600px) {
+  .why-us-list {
+    grid-template-columns: 1fr;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
 }
