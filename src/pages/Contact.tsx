@@ -201,6 +201,7 @@ const Contact: React.FC = () => {
         <h2 className="map-title">Find Us Here</h2>
         <div className="map-wrapper">
           <iframe 
+            title="Google Maps Location of Akshaya Labs"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.8080312644265!2d78.44196817596!3d17.468962691500366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb90f33984af5d%3A0xe549a16f4fc4ba5d!2sIndustrial%20Estate%2C%20Balanagar%2C%20Hyderabad%2C%20Telangana%20500037!5e0!3m2!1sen!2sin!4v1713271500000!5m2!1sen!2sin" 
             width="100%" 
             height="100%" 
