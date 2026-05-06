@@ -17,7 +17,7 @@ interface FooterProps {
   };
   sections?: Array<{
     title: string;
-    links: Array<{ name: string; href: string }>;
+    links: Array<{ name: string; href: string; external?: boolean }>;
   }>;
   description?: string;
   socialLinks?: Array<{
@@ -57,7 +57,7 @@ const defaultSections = [
     links: [
       { name: "Email Us", href: "mailto:akshayalabnet@gmail.com" },
       { name: "Call Us", href: "tel:9949942695" },
-      { name: "Location", href: "#" },
+      { name: "Location", href: "https://maps.google.com/?q=Cooperative+Industrial+Estate,+Balanagar,+Hyderabad,+Telangana+500018", external: true },
     ],
   },
 ];
@@ -110,7 +110,12 @@ export const Footer: React.FC<FooterProps> = ({
                 <ul className="footer-section-links">
                   {section.links.map((link, linkIdx) => (
                     <li key={linkIdx}>
-                      <a href={link.href}>{link.name}</a>
+                      <a 
+                        href={link.href}
+                        {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      >
+                        {link.name}
+                      </a>
                     </li>
                   ))}
                 </ul>

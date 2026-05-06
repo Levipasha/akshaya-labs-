@@ -184,6 +184,15 @@ nav {
   text-align: center;
   transition: all 0.2s;
   background: #fcfdfe;
+  overflow: hidden;
+}
+
+.file-input-wrapper input[type="file"] {
+  max-width: 100%;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .file-input-wrapper:hover {
@@ -636,3 +645,127 @@ nav {
   justify-content: flex-end;
   gap: 16px;
 }
+
+/* Mobile Sidebar Styles */
+.mobile-header {
+  display: none;
+}
+
+.close-sidebar-btn {
+  display: none;
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    height: 100vh;
+    z-index: 1000;
+    transition: left 0.3s ease;
+    width: 280px;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.1);
+  }
+  
+  .sidebar.open {
+    left: 0;
+  }
+  
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .sidebar-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .sidebar-title {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .close-sidebar-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--sidebar-link);
+    cursor: pointer;
+  }
+  
+  .close-sidebar-btn:hover {
+    color: #fff;
+  }
+
+  .main-content {
+    padding: 24px;
+    padding-top: 96px; /* space for mobile header */
+  }
+
+  .mobile-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    z-index: 998;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  }
+  
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    cursor: pointer;
+    padding: 4px;
+  }
+  
+  .mobile-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+  }
+  
+  /* Make grid forms responsive */
+  .grid-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group.full {
+    width: 100%;
+  }
+  
+  .items-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

@@ -238,7 +238,7 @@
 }
 
 .testimonial-info {
-  padding: 0;
+  padding: 0 0 20px 0;
 }
 
 .testimonial-quote {
@@ -259,10 +259,11 @@
 
 .testimonial-role {
   font-size: 0.9rem;
-  margin-top: 4px;
+  margin-top: 8px;
   font-weight: 500;
   color: #64748b;
-  display: inline-block;
+  display: block;
+  line-height: 1.5;
 }
 
 /* Mobile Adjustments */

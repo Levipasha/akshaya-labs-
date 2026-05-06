@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, ShoppingBag, User, Quote, Image as ImageIcon, Mail, LayoutGrid, LogOut } from 'lucide-react';
+import { LayoutDashboard, ShoppingBag, User, Quote, Image as ImageIcon, Mail, LayoutGrid, LogOut, Menu, X } from 'lucide-react';
 import ProductsManager from './pages/ProductsManager';
 import HeroManager from './pages/HeroManager';
 import FounderManager from './pages/FounderManager';
@@ -15,6 +15,7 @@ import Login from './pages/Login';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const authStatus = localStorage.getItem('adminAuth');
@@ -40,8 +41,14 @@ function App() {
   return (
     <Router>
       <div className="dashboard">
-        <aside className="sidebar">
-          <div className="sidebar-title">Admin Panel</div>
+        <div className={`sidebar-overlay ${isMobileMenuOpen ? 'open' : ''}`} onClick={() => setIsMobileMenuOpen(false)}></div>
+        <aside className={`sidebar ${isMobileMenuOpen ? 'open' : ''}`}>
+          <div className="sidebar-title">
+            Admin Panel
+            <button className="close-sidebar-btn" onClick={() => setIsMobileMenuOpen(false)}>
+              <X size={24} />
+            </button>
+          </div>
           <nav>
             <NavLink to="/hero" className="nav-link">
               <ImageIcon size={20} /> Hero Slides
@@ -80,6 +87,12 @@ function App() {
           </nav>
         </aside>
         <main className="main-content">
+          <div className="mobile-header">
+            <button className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(true)}>
+              <Menu size={24} />
+            </button>
+            <div className="mobile-title">Admin Panel</div>
+          </div>
           <Routes>
             <Route path="/hero" element={<HeroManager />} />
             <Route path="/categories" element={<CategoryManager />} />
