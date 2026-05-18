@@ -58,18 +58,6 @@ const BentoGrid: React.FC = () => {
             </div>
           </div>
 
-
-          {/* Block 4: Product Catalog (Grey Blue Box) */}
-          <div className="bento-card bento-catalog">
-            <p className="catalog-title">{bento.catalogTitle}</p>
-            <h3 className="catalog-subtitle">{bento.catalogSubtitle}</h3>
-            <div className="catalog-dots">
-              <span className="dot active"></span>
-              <span className="dot"></span>
-              <span className="dot"></span>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>

@@ -64,16 +64,18 @@
 }
 
 .stat-value {
-  font-size: 2.5rem;
-  font-weight: 300;
+  font-size: 4rem;
+  font-weight: 700;
   color: #0f172a;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 .stat-label {
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   color: #64748b;
-  font-weight: 600;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .bento-dark {
@@ -123,46 +125,6 @@
   margin-top: auto;
 }
 
-.bento-catalog {
-  grid-column: 6 / 11;
-  grid-row: 2 / 3;
-  background-color: #94a3b8;
-  color: #1e293b;
-  position: relative;
-}
-
-.catalog-title {
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-bottom: 10px;
-  color: #334155;
-  text-transform: uppercase;
-}
-
-.catalog-subtitle {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: white;
-}
-
-.catalog-dots {
-  position: absolute;
-  bottom: 30px;
-  left: 30px;
-  display: flex;
-  gap: 6px;
-}
-
-.catalog-dots .dot {
-  width: 6px;
-  height: 6px;
-  background-color: rgba(255, 255, 255, 0.4);
-  border-radius: 50%;
-}
-.catalog-dots .dot.active {
-  background-color: white;
-}
 
 .bento-cert {
   grid-column: 11 / 13;
@@ -203,10 +165,6 @@
     grid-column: 2 / 3;
     grid-row: 2 / 3;
   }
-  .bento-catalog {
-    grid-column: 1 / 2;
-    grid-row: 3 / 4;
-  }
   .bento-cert {
     grid-column: 2 / 3;
     grid-row: 3 / 4;
@@ -217,7 +175,7 @@
   .bento-grid {
     grid-template-columns: 1fr;
   }
-  .bento-about, .bento-stats, .bento-dark, .bento-catalog, .bento-cert {
+  .bento-about, .bento-stats, .bento-dark, .bento-cert {
     grid-column: 1 / 2;
     grid-row: auto;
   }
