@@ -5,6 +5,9 @@ const productSchema = new mongoose.Schema({
   description: { type: String },
   img: { type: String, required: true },
   category: { type: String },
+  material: { type: String, default: 'High-grade Industrial Composite' },
+  warranty: { type: String, default: '12 Months Support' },
+  availability: { type: String, default: 'Ready for Dispatch' },
   specifications: [{ name: String, value: String }]
 }, { timestamps: true });
 

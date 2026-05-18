@@ -59,7 +59,7 @@ const About: React.FC = () => {
 
   const storyTitle = data?.story?.title || "Our Journey & Excellence";
   const storyParagraphs = data?.story?.paragraphs?.length ? data.story.paragraphs : [
-    "<strong>“Akshaya Sai Fiber Linings”</strong> is a Sole Proprietorship based entity, headquartered at Malkajgiri Maruthi Nagar, Hyderabad, Telangana with well-equipped facilities of manpower and machineries.",
+    "<strong>“akshayalabtechnologies”</strong> is a Sole Proprietorship based entity, headquartered at Malkajgiri Maruthi Nagar, Hyderabad, Telangana with well-equipped facilities of manpower and machineries.",
     "Since 2004, it is ardently engrossed in the occupation of manufacturing and offering a flawless range of Chemical Fume Hood, Laboratory Bench, Air Blower and many more. The concentration of our firm is on developing an enhanced tomorrow and that’s why it is dedicated towards excellence and always tries to do pioneering implantations to become a future corporation.",
     "We always try to improve and evolve our skills by conducting intervallic seminars for the upcoming and most upgraded techniques."
   ];
@@ -87,7 +87,7 @@ const About: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            About Akshaya Sai Fiber Linings
+            About akshayalabtechnologies
           </motion.h2>
         </div>
       </section>

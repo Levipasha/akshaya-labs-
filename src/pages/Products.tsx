@@ -12,6 +12,9 @@ interface Product {
   description: string;
   image?: string;
   img?: string; // Support both naming conventions from backend/static
+  material?: string;
+  warranty?: string;
+  availability?: string;
 }
 
 const fallbackProducts: Product[] = [
@@ -90,13 +93,13 @@ const ProductModal: React.FC<{ product: Product; onClose: () => void }> = ({ pro
 
             <div className="modal-specs">
               <div className="spec-item">
-                <strong>Material:</strong> High-grade Industrial Composite
+                <strong>Material:</strong> {product.material || 'High-grade Industrial Composite'}
               </div>
               <div className="spec-item">
-                <strong>Warranty:</strong> 12 Months Support
+                <strong>Warranty:</strong> {product.warranty || '12 Months Support'}
               </div>
               <div className="spec-item">
-                <strong>Availability:</strong> Ready for Dispatch
+                <strong>Availability:</strong> {product.availability || 'Ready for Dispatch'}
               </div>
             </div>
 

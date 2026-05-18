@@ -7,7 +7,12 @@ function ProductsManager() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [formData, setFormData] = useState({ name: '', description: '', category: '', img: '' });
+  const [formData, setFormData] = useState({ 
+    name: '', description: '', category: '', img: '',
+    material: 'High-grade Industrial Composite',
+    warranty: '12 Months Support',
+    availability: 'Ready for Dispatch'
+  });
   const [imageFile, setImageFile] = useState(null);
   const [editingId, setEditingId] = useState(null);
 
@@ -67,6 +72,9 @@ function ProductsManager() {
       data.append('name', formData.name);
       data.append('description', formData.description);
       data.append('category', formData.category);
+      data.append('material', formData.material);
+      data.append('warranty', formData.warranty);
+      data.append('availability', formData.availability);
       data.append('img', formData.img);
       if (imageFile) data.append('image', imageFile);
 
@@ -79,7 +87,7 @@ function ProductsManager() {
       }
       
       setEditingId(null);
-      setFormData({ name: '', description: '', category: '', img: '' });
+      setFormData({ name: '', description: '', category: '', img: '', material: 'High-grade Industrial Composite', warranty: '12 Months Support', availability: 'Ready for Dispatch' });
       setImageFile(null);
       fetchProducts();
     } catch (err) {
@@ -131,6 +139,30 @@ function ProductsManager() {
               ))}
             </select>
           </div>
+          <div className="form-group">
+            <label>Material</label>
+            <input 
+              type="text" 
+              value={formData.material} 
+              onChange={e => setFormData({...formData, material: e.target.value})} 
+            />
+          </div>
+          <div className="form-group">
+            <label>Warranty</label>
+            <input 
+              type="text" 
+              value={formData.warranty} 
+              onChange={e => setFormData({...formData, warranty: e.target.value})} 
+            />
+          </div>
+          <div className="form-group">
+            <label>Availability</label>
+            <input 
+              type="text" 
+              value={formData.availability} 
+              onChange={e => setFormData({...formData, availability: e.target.value})} 
+            />
+          </div>
           <div className="form-group full">
             <label>Description</label>
             <textarea 
@@ -153,7 +185,7 @@ function ProductsManager() {
               {editingId ? 'Update Product' : 'Create Product'}
             </button>
             {editingId && (
-              <button type="button" onClick={() => { setEditingId(null); setFormData({name:'', description:'', category:''}); }} className="btn btn-ghost">Cancel</button>
+              <button type="button" onClick={() => { setEditingId(null); setFormData({name:'', description:'', category:'', material: 'High-grade Industrial Composite', warranty: '12 Months Support', availability: 'Ready for Dispatch'}); }} className="btn btn-ghost">Cancel</button>
             )}
           </div>
         </form>
@@ -170,7 +202,15 @@ function ProductsManager() {
                 <button 
                   onClick={() => {
                     setEditingId(p._id);
-                    setFormData({ name: p.name, description: p.description, category: p.category || '', img: p.img });
+                    setFormData({ 
+                      name: p.name, 
+                      description: p.description, 
+                      category: p.category || '', 
+                      img: p.img,
+                      material: p.material || 'High-grade Industrial Composite',
+                      warranty: p.warranty || '12 Months Support',
+                      availability: p.availability || 'Ready for Dispatch'
+                    });
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }} 
                   className="btn btn-ghost"
